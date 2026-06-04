@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #f0f0f0;
+}
+
+@theme inline {
+  --color-background: #000000;
+  --color-foreground: #f0f0f0;
+  --color-noir: #000000;
+  --color-nuit: #050B18;
+  --color-glacier: #A1E3F9;
+  --color-glacier-muted: rgba(161, 227, 249, 0.15);
+  --font-display: var(--font-montserrat);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: #000000;
+  color: #f0f0f0;
+  font-family: var(--font-inter), sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(5, 11, 24, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(161, 227, 249, 0.12);
+}
+
+.glass-card {
+  background: rgba(5, 11, 24, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(161, 227, 249, 0.12);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #A1E3F9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Radial glow overlay */
+.radial-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(161, 227, 249, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Input styles */
+.input-dark {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(161, 227, 249, 0.2);
+  color: #f0f0f0;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-dark:focus {
+  border-color: rgba(161, 227, 249, 0.6);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.input-dark::placeholder {
+  color: rgba(240, 240, 240, 0.35);
+}
