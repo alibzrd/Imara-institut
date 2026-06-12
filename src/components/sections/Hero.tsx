@@ -1,7 +1,43 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 import { ArrowRight, Shield, Clock, MapPin } from "lucide-react";
+
+function useCounter(target: number, duration = 1800, active = false) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!active) return;
+    let start: number | null = null;
+    const step = (ts: number) => {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      // ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [active, target, duration]);
+  return count;
+}
+
+function StatCounter({ value, label }: { value: number; label: string }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const count = useCounter(value, 1600, inView);
+  return (
+    <div ref={ref} className="flex flex-col items-center gap-1">
+      <span
+        style={{ color: "#A1E3F9" }}
+        className="font-display text-5xl sm:text-6xl font-black tabular-nums"
+      >
+        +{count}
+      </span>
+      <span className="text-white/40 text-sm tracking-wide">{label}</span>
+    </div>
+  );
+}
 
 const TRUST_BADGES = [
   { icon: Shield, label: "Assurance Tous Risques" },
@@ -150,22 +186,11 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
+          className="flex flex-col sm:flex-row items-center justify-center gap-10 sm:gap-20 pt-4"
         >
-          {[
-            { value: "+150", label: "particuliers accompagnés" },
-            { value: "+40", label: "clients professionnels" },
-          ].map(({ value, label }) => (
-            <div key={label} className="flex items-baseline gap-2">
-              <span
-                style={{ color: "#A1E3F9" }}
-                className="font-display text-2xl font-black"
-              >
-                {value}
-              </span>
-              <span className="text-white/35 text-sm">{label}</span>
-            </div>
-          ))}
+          <StatCounter value={150} label="particuliers accompagnés" />
+          <div className="hidden sm:block w-px h-12" style={{ backgroundColor: "rgba(161,227,249,0.15)" }} />
+          <StatCounter value={40} label="clients professionnels" />
         </motion.div>
       </div>
 
