@@ -341,7 +341,7 @@ export default function Simulator() {
                 <SelectCard
                   icon={<Car size={18} />}
                   title="Chauffeur sans voiture"
-                  subtitle="Nous envoyons un chauffeur qui conduit votre véhicule de A vers B. Votre voiture arrive, vous prenez l'avion ou le train."
+                  subtitle="Un chauffeur conduit votre véhicule de A vers B."
                   selected={driverMode === "sans-voiture"}
                   onClick={() => {
                     setDriverMode("sans-voiture");

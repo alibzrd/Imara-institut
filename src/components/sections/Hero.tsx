@@ -134,12 +134,36 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="flex flex-wrap justify-center gap-6"
+          className="flex flex-wrap justify-center gap-6 mb-10"
         >
           {TRUST_BADGES.map(({ icon: Icon, label }) => (
             <div key={label} className="flex items-center gap-2 text-white/40 text-sm">
               <Icon size={15} style={{ color: "#A1E3F9" }} />
               <span>{label}</span>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Social proof */}
+        <motion.div
+          custom={5}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
+        >
+          {[
+            { value: "+150", label: "particuliers accompagnés" },
+            { value: "+40", label: "clients professionnels" },
+          ].map(({ value, label }) => (
+            <div key={label} className="flex items-baseline gap-2">
+              <span
+                style={{ color: "#A1E3F9" }}
+                className="font-display text-2xl font-black"
+              >
+                {value}
+              </span>
+              <span className="text-white/35 text-sm">{label}</span>
             </div>
           ))}
         </motion.div>
