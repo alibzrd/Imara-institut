@@ -122,7 +122,7 @@ export default function ImFormations() {
                     ⏱ {f.duree}
                   </span>
                   <a
-                    href="#contact"
+                    href="/imara/inscription"
                     className="flex items-center gap-1 text-xs font-medium text-[#2A4A5E] hover:gap-2 transition-all"
                     style={{ fontFamily: "var(--font-dmsans), system-ui, sans-serif" }}
                   >
@@ -136,7 +136,7 @@ export default function ImFormations() {
 
         <div className="px-4 mt-8 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
           <a
-            href="#contact"
+            href="/imara/inscription"
             className="inline-flex items-center gap-2 bg-[#2A4A5E] text-white text-sm font-medium px-6 py-3 rounded-lg hover:bg-[#1e3a4e] transition-colors"
             style={{ fontFamily: "var(--font-dmsans), system-ui, sans-serif" }}
           >

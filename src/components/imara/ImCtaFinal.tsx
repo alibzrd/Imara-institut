@@ -95,7 +95,7 @@ export default function ImCtaFinal() {
                 </p>
               </div>
               <a
-                href="https://imarainstitut.com/inscription/"
+                href="/imara/inscription"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 bg-[#2A4A5E] text-white font-medium py-3 rounded-lg hover:bg-[#1e3a4e] transition-colors text-sm"
