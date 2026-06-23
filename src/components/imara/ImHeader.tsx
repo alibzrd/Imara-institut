@@ -19,7 +19,7 @@ export default function ImHeader() {
     { href: "#formations", label: "Académie" },
     { href: "#equipe", label: "Notre histoire" },
     { href: "#temoignages", label: "Témoignages" },
-    { href: "#contact", label: "Contact" },
+    { href: "/imara/inscription", label: "S'inscrire" },
   ];
 
   return (

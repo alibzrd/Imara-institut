@@ -106,15 +106,18 @@ export default function ImFooter() {
               className="flex flex-col gap-2 text-sm mb-6"
               style={{ fontFamily: "var(--font-dmsans), system-ui, sans-serif" }}
             >
-              {["Toutes les formations", "Financement CPF / OPCO", "Planning des sessions", "S'inscrire"].map((s) => (
-                <li key={s}>
+              {[
+                { label: "Toutes les formations", href: "#formations" },
+                { label: "Financement CPF / OPCO", href: "#formations" },
+                { label: "Planning des sessions", href: "#formations" },
+                { label: "S'inscrire", href: "/imara/inscription" },
+              ].map((s) => (
+                <li key={s.label}>
                   <a
-                    href="https://imarainstitut.com/formations/"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={s.href}
                     className="hover:text-[#C4906A] transition-colors"
                   >
-                    {s}
+                    {s.label}
                   </a>
                 </li>
               ))}
