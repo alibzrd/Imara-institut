@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const { formation, nom, prenom, email, telephone, ville, financement, message } = body;
@@ -10,6 +8,8 @@ export async function POST(req: NextRequest) {
   if (!formation || !nom || !prenom || !email || !telephone) {
     return NextResponse.json({ error: "Champs obligatoires manquants" }, { status: 400 });
   }
+
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
     // Email to Maryline (admin)
