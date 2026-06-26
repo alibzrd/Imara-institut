@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, CheckCircle2, GraduationCap, Loader2 } from "lucide-react";
 
@@ -52,8 +53,22 @@ const EMPTY: FormData = {
 };
 
 export default function InscriptionPage() {
+  return (
+    <Suspense>
+      <InscriptionForm />
+    </Suspense>
+  );
+}
+
+function InscriptionForm() {
+  const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [data, setData] = useState<FormData>(EMPTY);
+
+  useEffect(() => {
+    const f = searchParams.get("formation");
+    if (f) setData((d) => ({ ...d, formation: f }));
+  }, [searchParams]);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -447,6 +462,8 @@ export default function InscriptionPage() {
     </div>
   );
 }
+
+export { InscriptionPage };
 
 function Field({
   label, value, onChange, placeholder, type = "text",
