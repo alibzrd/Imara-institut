@@ -23,31 +23,26 @@ export default function ImHeader() {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#FAF8F5]/95 backdrop-blur-md shadow-sm" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/imara" className="flex items-center">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white border-b border-[#E5E5E3]" : "bg-transparent"}`}>
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <Link href="/imara">
           <Image
             src="/imara/logo.png"
             alt="Imara Institut"
             width={120}
             height={37}
-            className="h-9 w-auto"
+            className={`h-9 w-auto transition-all ${scrolled ? "" : "brightness-0 invert"}`}
             priority
           />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-[#6B6B6B] hover:text-[#C4906A] transition-colors"
+              className={`text-xs tracking-widest uppercase transition-colors hover:text-[#C9A96E] ${scrolled ? "text-[#0A0A0A]" : "text-white/80"}`}
               style={{ fontFamily: "var(--font-dmsans), system-ui, sans-serif" }}
             >
               {l.label}
@@ -57,40 +52,41 @@ export default function ImHeader() {
             href="https://www.planity.com/imara-77127-lieusaint"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-[#C4906A] text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-[#b07d5a] transition-colors"
+            className={`flex items-center gap-2 text-xs tracking-widest uppercase px-5 py-2.5 border transition-colors hover:bg-[#C9A96E] hover:border-[#C9A96E] hover:text-white ${scrolled ? "border-[#C9A96E] text-[#C9A96E]" : "border-white/50 text-white"}`}
             style={{ fontFamily: "var(--font-dmsans), system-ui, sans-serif" }}
           >
-            <Calendar size={14} />
+            <Calendar size={12} />
             Réserver
           </a>
         </nav>
 
-        {/* Mobile: book + hamburger */}
+        {/* Mobile */}
         <div className="flex items-center gap-3 md:hidden">
           <a
             href="https://www.planity.com/imara-77127-lieusaint"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 bg-[#C4906A] text-white text-xs font-medium px-3 py-2 rounded-lg"
+            className="flex items-center gap-1.5 bg-[#C9A96E] text-white text-xs px-3 py-2"
+            style={{ fontFamily: "var(--font-dmsans), system-ui, sans-serif" }}
           >
-            <Calendar size={12} />
+            <Calendar size={11} />
             Réserver
           </a>
-          <button onClick={() => setOpen(!open)} className="text-[#2C2C2C] p-1">
+          <button onClick={() => setOpen(!open)} className={scrolled ? "text-[#0A0A0A]" : "text-white"}>
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-[#FAF8F5] border-t border-[#E8E4DF] px-4 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-white border-t border-[#E5E5E3] px-6 py-5 flex flex-col gap-5">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="text-[#2C2C2C] text-base font-medium py-1"
+              className="text-xs tracking-widest uppercase text-[#0A0A0A] hover:text-[#C9A96E] transition-colors"
+              style={{ fontFamily: "var(--font-dmsans), system-ui, sans-serif" }}
             >
               {l.label}
             </a>
